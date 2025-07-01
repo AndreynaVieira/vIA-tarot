@@ -1,0 +1,6 @@
+geopy
+flatlib
+google-generativeai
+python-dotenv
+fastapi
+uvicorn[standard]

@@ -36,8 +36,8 @@ Siga os passos abaixo para ter o projeto rodando em sua máquina local.
 
 **2. Clone o Repositório:**
    ```bash
-   git clone https://github.com/AndreynaVieira/vIA-Tarot
-   cd vIA-Tarot
+   git clone https://github.com/AndreynaVieira/vIA-tarot
+   cd vIA-tarot
    ```
 
 **3. Crie e Ative o Ambiente Virtual:**
