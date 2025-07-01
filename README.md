@@ -2,7 +2,6 @@
 
 Uma aplicação web full-stack que gera e interpreta mapas astrais personalizados, combinando um backend em Python (FastAPI) com um frontend interativo em React e o poder da Inteligência Artificial Generativa do Google (Gemini).
 
-![Screenshot da Aplicação](https://imgur.com/a/VGKdKnx)
 
 
 ## 📜 Descrição
