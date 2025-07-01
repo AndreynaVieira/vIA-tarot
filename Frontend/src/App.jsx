@@ -1,32 +1,37 @@
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import './App.css'
 
 function App() {
+  // Estados para cada campo do formulário
   const [date, setDate] = useState('2004-09-13');
   const [time, setTime] = useState('12:25');
   const [city, setCity] = useState('Olinda, PE');
   const [timezone, setTimezone] = useState(-3);
 
+  // Estados para controlar o resultado e o carregamento
   const [analysis, setAnalysis] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   
-  // --- Novos estados para o Chat ---
+  //  Novos estados para o Chat 
   const [natalChart, setNatalChart] = useState(null);
   const [chatHistory, setChatHistory] = useState([]);
   const [isChatLoading, setIsChatLoading] = useState(false);
 
   const handleAnalysisSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Impede o recarregamento da página
     setIsLoading(true);
     setAnalysis('');
     setNatalChart(null);
     setChatHistory([]); // Limpa o chat ao gerar novo mapa
     setError('');
 
+    // Formata a data para o formato que o backend espera (AAAA-MM-DD)
+    const formattedDate = new Date(date).toLocaleDateString('en-CA');
+
     const birthData = {
-      data_nasc: new Date(date).toLocaleDateString('en-CA'),
+      data_nasc: formattedDate,
       hora_nasc: time,
       cidade_nasc: city,
       fuso_horario: timezone,
@@ -82,12 +87,12 @@ function App() {
         setChatHistory(prevHistory => [...prevHistory, { role: 'assistant', content: aiResponse }]);
       })
       .catch(err => {
-         setChatHistory(prevHistory => [...prevHistory, { role: 'assistant', content: "Erro de conexão com a IA." }]);
+          setChatHistory(prevHistory => [...prevHistory, { role: 'assistant', content: "Erro de conexão com a IA." }]);
         console.error(err);
       })
       .finally(() => {
         setIsChatLoading(false);
-        event.target.reset(); // Limpa o campo de input
+        event.target.reset(); 
       });
   };
 
@@ -117,7 +122,7 @@ function App() {
         </div>
       )}
 
-      {/* --- INTERFACE DO CHATBOT --- */}
+      {/*  INTERFACE DO CHATBOT  */}
       {natalChart && (
         <div className="card chat-container">
           <h2>Converse com o Astrólogo IA</h2>

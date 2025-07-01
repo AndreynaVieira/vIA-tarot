@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware # type: ignore
 from pydantic import BaseModel # type: ignore
 from typing import List, Dict, Any
 
-# Nossos módulos
+
 from core_astro.engine import AstroEngine
 from core_ai.generator import gerar_analise_ia, responder_pergunta_ia
 from utils.converters import get_coords_from_city
@@ -13,7 +13,7 @@ class BirthData(BaseModel):
     data_nasc: str  # Espera "AAAA-MM-DD"
     hora_nasc: str
     cidade_nasc: str
-    fuso_horario: int
+    fuso_horario: Any
 
 class ChatMessage(BaseModel):
     role: str
@@ -46,8 +46,6 @@ def handle_analise(birth_data: BirthData):
     lat, lon = coords
     
     try:
-        # --- CORREÇÃO FINAL AQUI ---
-        # 1. Quebramos a data AAAA-MM-DD em três números inteiros
         ano, mes, dia = map(int, birth_data.data_nasc.split('-'))
 
         
