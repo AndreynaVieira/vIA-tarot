@@ -1,72 +1,103 @@
 # 🔮 Hub Astrológico com IA
 
-Bem-vindo ao Hub Astrológico com IA, um projeto que combina a precisão dos cálculos astrológicos com o poder da Inteligência Artificial Generativa para criar interpretações de mapas astrais únicas e profundas.
+Uma aplicação web full-stack que gera e interpreta mapas astrais personalizados, combinando um backend em Python (FastAPI) com um frontend interativo em React e o poder da Inteligência Artificial Generativa do Google (Gemini).
+
+![Screenshot da Aplicação](https://imgur.com/a/VGKdKnx)
+
 
 ## 📜 Descrição
 
-Este aplicativo web, construído inteiramente em Python, permite que qualquer usuário gere uma análise de seu mapa astral natal. A partir de dados de nascimento (data, hora e local), o sistema calcula as posições dos principais planetas e pontos do mapa, como Sol, Lua e Ascendente, incluindo suas respectivas casas astrológicas. Em seguida, esses dados são enviados para a API do Google Gemini, que atua como um "astrólogo virtual", gerando um texto coeso e personalizado que interpreta as energias e interações do mapa.
+Este projeto é uma plataforma astrológica completa que oferece aos usuários uma janela para o autoconhecimento. A aplicação permite a geração de um mapa astral natal detalhado a partir de dados de nascimento (data, hora e local). A partir desses dados, uma análise profunda e única é gerada por uma Inteligência Artificial, interpretando as principais posições planetárias e suas interações.
 
-O projeto também conta com uma interface interativa e amigável desenvolvida com a biblioteca Streamlit.
+Além da análise inicial, o projeto conta com um chatbot interativo, permitindo que o usuário "converse" sobre seu mapa e tire dúvidas específicas, recebendo respostas contextuais geradas pela IA.
+
+## 🏛️ Arquitetura da Aplicação
+
+Este projeto é construído sobre uma arquitetura Full-Stack moderna, separando as responsabilidades entre o backend e o frontend para maior organização e escalabilidade.
+
+* **Backend (A "Cozinha" 🍳):**
+    * Desenvolvido em **Python** com o framework **FastAPI**.
+    * Responsável por toda a lógica de negócio: receber os dados, utilizar a biblioteca `flatlib` para os cálculos astrológicos precisos, conectar-se à API do Google Gemini para gerar as análises e respostas do chat, e expor os resultados através de uma API RESTful.
+
+* **Frontend (O "Salão" 🍽️):**
+    * Desenvolvido em **JavaScript** com a biblioteca **React** (utilizando Vite como ferramenta de build).
+    * Responsável por toda a experiência do usuário: renderizar a interface gráfica, coletar os dados do usuário através de um formulário interativo, fazer chamadas de API para o backend e exibir os resultados de forma bonita e legível.
+
+As duas partes rodam em servidores independentes e se comunicam através de requisições HTTP.
 
 ## ✨ Principais Funcionalidades
 
-- **Cálculo de Mapa Astral:** Utiliza a biblioteca `flatlib` para calcular com precisão as posições dos 7 planetas clássicos e do Ascendente.
-- **Análise por IA:** Integra-se com a API do Google Gemini (`gemini-2.5-flash`) para gerar textos de análise únicos e personalizados.
-- **Engenharia de Prompt:** Utiliza prompts detalhados para instruir a IA a agir como um astrólogo experiente, conectando os diferentes pontos do mapa.
-- **Interface Web Interativa:** Construído com Streamlit para uma experiência de usuário amigável e moderna, com formulários e exibição clara dos resultados.
-- **Geocodificação:** Converte automaticamente o nome da cidade de nascimento em coordenadas (latitude e longitude) usando a biblioteca `geopy`.
-- **Chatbot (em desenvolvimento):** Estrutura inicial para um chatbot interativo que permite ao usuário fazer perguntas específicas sobre seu mapa.
+- **Cálculo de Mapa Astral:** Utiliza a `flatlib` para calcular com precisão as posições dos 7 planetas clássicos e do Ascendente, incluindo as casas astrológicas.
+- **Análise Gerada por IA:** Integra-se com a API do Google Gemini (`gemini-2.5-flash`) para gerar análises de personalidade únicas e coesas.
+- **Chatbot Interativo:** Permite que o usuário faça perguntas de acompanhamento sobre seu mapa, com respostas contextuais geradas pela IA.
+- **Interface Web Moderna:** Construído com React para uma experiência de usuário rica e interativa.
+- **Geocodificação:** Converte automaticamente o nome da cidade de nascimento em coordenadas (latitude e longitude) usando `geopy`.
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Linguagem:** Python 3.11
-- **Cálculos Astrológicos:** `flatlib`
-- **Inteligência Artificial:** `google-generativeai`
-- **Interface Web:** `streamlit`
-- **Geocodificação:** `geopy`
-- **Gerenciamento de Segredos:** `python-dotenv`
+* **Backend:**
+    * Python 3.11
+    * FastAPI & Uvicorn
+    * Flatlib
+    * Google Generative AI
+    * Python-Dotenv
+* **Frontend:**
+    * React
+    * Vite
+    * JavaScript
+    * CSS
 
 ## 🚀 Como Instalar e Executar
 
-Siga os passos abaixo para ter o projeto rodando em sua máquina local.
+Para rodar este projeto, você precisará iniciar o servidor do backend e o servidor do frontend separadamente.
 
 **1. Pré-requisitos:**
-   - Ter o [Python 3.11](https://www.python.org/downloads/) instalado e adicionado ao PATH do sistema.
-   - Ter uma chave de API para a IA Generativa do Google. Você pode obter uma gratuitamente no [Google AI Studio](https://aistudio.google.com/).
+* **Python 3.11** instalado.
+* **Node.js e npm** instalados.
+* Uma **chave de API** para a IA Generativa do Google, que pode ser obtida no [Google AI Studio](https://aistudio.google.com/).
 
 **2. Clone o Repositório:**
-   ```bash
-   git clone https://github.com/AndreynaVieira/vIA-tarot
-   cd vIA-tarot
-   ```
+```bash
+git clone [https://github.com/AndreynaVieira/vIA-Tarot]
+cd nome-da-pasta-do-projeto
+```
 
-**3. Crie e Ative o Ambiente Virtual:**
-   ```bash
-   # Crie o ambiente
-   python -m venv venv
+**3. Configuração do Backend:**
+```bash
+# Navegue até a pasta do backend
+cd backend
 
-   # Ative o ambiente (Windows)
-   .\venv\Scripts\activate
-   ```
+# Crie e ative o ambiente virtual
+py -3.11 -m venv venv
+.\venv\Scripts\activate
 
-**4. Instale as Dependências:**
-   Com o ambiente ativado, instale todas as bibliotecas necessárias:
-   ```bash
-   pip install -r requirements.txt
-   ```
+# Instale as dependências do Python
+pip install -r requirements.txt
 
-**5. Configure sua Chave de API:**
-   - Na raiz do projeto, crie um arquivo chamado `.env`.
-   - Dentro deste arquivo, adicione a seguinte linha, substituindo pelo seu valor:
-     ```
-     GOOGLE_API_KEY="SUA_CHAVE_DE_API_AQUI"
-     ```
+# Crie o arquivo .env e adicione sua chave 
+GOOGLE_API_KEY="SUA_CHAVE_DE_API_AQUI"
 
-**6. Execute a Aplicação:**
-   Finalmente, para iniciar a interface web, rode o seguinte comando no seu terminal:
-   ```bash
-   streamlit run Home.py
-   ```
-   Uma aba no seu navegador será aberta automaticamente com a aplicação rodando!
+# Inicie o servidor do backend
+uvicorn api:app --reload
+```
+*Deixe este terminal rodando.*
+
+**4. Configuração do Frontend:**
+*Abra um **novo terminal**.*
+```bash
+# Navegue até a pasta do frontend
+cd frontend
+
+# Instale as dependências do Node.js
+npm install
+
+# Inicie o servidor de desenvolvimento do React
+npm run dev
+```
+*Deixe este segundo terminal rodando.*
+
+**5. Acesse a Aplicação:**
+Abra seu navegador e acesse a URL fornecida pelo servidor do frontend (geralmente `http://localhost:8000`).
 
 ---
+
